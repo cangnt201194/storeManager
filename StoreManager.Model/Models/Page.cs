@@ -7,18 +7,21 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace StoreManager.Model.Models
 {
-    [Table("Tags")]
-    public class Tag
+    [Table("Pages")]
+    public class Page
     {
         [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [MaxLength(50)]
         public int ID { get; set; }
         [Required]
-        [MaxLength(50)]
+        [MaxLength(256)]
         public string Name { get; set; }
+        [Column(TypeName = "varchar")]
+        [MaxLength(256)]
         [Required]
-        [MaxLength(50)]
-        public string Type { get; set; }
+        public string Alias { set; get; }
+        public string Content { get; set; }
+        
+
+
     }
 }
