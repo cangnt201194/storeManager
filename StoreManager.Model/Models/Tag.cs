@@ -13,7 +13,7 @@ namespace StoreManager.Model.Models
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [MaxLength(50)]
-        public int ID { get; set; }
+        public string ID { get; set; }
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
