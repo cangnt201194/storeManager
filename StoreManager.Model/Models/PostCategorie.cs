@@ -6,7 +6,7 @@ using StoreManager.Model.Abstract;
 namespace StoreManager.Model.Models
 {
     [Table("PostCategories")]
-    public class PostCategorie: Auditable
+    public class PostCategory: Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
