@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StoreManager.Data.Infrastructure
 {
@@ -14,6 +10,7 @@ namespace StoreManager.Data.Infrastructure
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
         public bool isDisposed;
 
         ~Disposable()
@@ -30,9 +27,8 @@ namespace StoreManager.Data.Infrastructure
             isDisposed = true;
         }
 
-        protected virtual  void DisposeCore()
+        protected virtual void DisposeCore()
         {
-           
         }
     }
 }

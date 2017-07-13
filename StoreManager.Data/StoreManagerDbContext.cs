@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StoreManager.Model.Models;
 using System.Data.Entity;
-using StoreManager.Model.Models;
 
 namespace StoreManager.Data
 {
-    public class StoreManagerDbContext:DbContext
+    public class StoreManagerDbContext : DbContext
     {
         //nhận connectionstring trong app.config ở đây là StoreManagerConnection
         public StoreManagerDbContext() : base("StoreManagerConnection")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
+
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
         public DbSet<MenuGroup> MenuGroups { set; get; }
@@ -33,13 +29,14 @@ namespace StoreManager.Data
 
         public DbSet<Tag> Tags { set; get; }
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
+
         /// <summary>
         /// Chạy khi khởi tạo entity framework
         /// </summary>
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           // base.OnModelCreating(modelBuilder);
+            // base.OnModelCreating(modelBuilder);
         }
     }
 }

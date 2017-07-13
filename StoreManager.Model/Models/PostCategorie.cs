@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using StoreManager.Model.Abstract;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using StoreManager.Model.Abstract;
 
 namespace StoreManager.Model.Models
 {
     [Table("PostCategories")]
-    public class PostCategory: Auditable
+    public class PostCategory : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
