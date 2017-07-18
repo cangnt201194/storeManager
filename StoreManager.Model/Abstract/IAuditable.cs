@@ -13,6 +13,5 @@ namespace StoreManager.Model.Abstract
         string MetaDescription { set; get; }
 
         bool Status { set; get; }
-
     }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 namespace StoreManager.Model.Models
 {
     [Table("Tags")]
@@ -13,10 +9,13 @@ namespace StoreManager.Model.Models
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [MaxLength(50)]
+        [Column(TypeName = "varchar")]
         public string ID { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string Type { get; set; }

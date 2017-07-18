@@ -9,8 +9,10 @@ namespace StoreManager.Model.Models
     {
         [Key]
         public Guid ID { get; set; }
+
         [Required]
         public DateTime VisitedDate { get; set; }
+
         [MaxLength(50)]
         public string IPAddress { get; set; }
     }

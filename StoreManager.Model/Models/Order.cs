@@ -1,9 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
-
-
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StoreManager.Model.Models
 {
@@ -37,7 +35,7 @@ namespace StoreManager.Model.Models
         [MaxLength(256)]
         public string PaymentMethod { set; get; }
 
-        public  DateTime? CreatedDate { set; get; }
+        public DateTime? CreatedDate { set; get; }
         public string CreatedBy { set; get; }
         public string PaymentStatus { set; get; }
         public bool Status { set; get; }

@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.Service", "Sto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.UnitTest", "StoreManager.UnitTest\StoreManager.UnitTest.csproj", "{56B697BF-4C69-44FF-9319-0D013B9F3E00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.Web", "StoreManager.Web\StoreManager.Web.csproj", "{5DB331D5-3EEB-422B-9171-63D2FB49E259}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.Web", "StoreManager.Web\StoreManager.Web.csproj", "{02F46107-169C-4A10-8609-AD11F02732C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{56B697BF-4C69-44FF-9319-0D013B9F3E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56B697BF-4C69-44FF-9319-0D013B9F3E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56B697BF-4C69-44FF-9319-0D013B9F3E00}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5DB331D5-3EEB-422B-9171-63D2FB49E259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DB331D5-3EEB-422B-9171-63D2FB49E259}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DB331D5-3EEB-422B-9171-63D2FB49E259}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DB331D5-3EEB-422B-9171-63D2FB49E259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02F46107-169C-4A10-8609-AD11F02732C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F46107-169C-4A10-8609-AD11F02732C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F46107-169C-4A10-8609-AD11F02732C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F46107-169C-4A10-8609-AD11F02732C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using StoreManager.Model.Abstract;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using StoreManager.Model.Abstract;
+
 namespace StoreManager.Model.Models
 {
     public class Post : Auditable
