@@ -9,6 +9,7 @@ namespace StoreManager.Model.Models
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [MaxLength(50)]
+        [Column(TypeName = "varchar")]
         public string ID { get; set; }
 
         [Required]

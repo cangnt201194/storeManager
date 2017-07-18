@@ -72,9 +72,12 @@
       <Name>StoreManager.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\StoreManager.Web\StoreManager.Web.csproj">
-      <Project>{5db331d5-3eeb-422b-9171-63d2fb49e259}</Project>
+      <Project>{02f46107-169c-4a10-8609-ad11f02732c9}</Project>
       <Name>StoreManager.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
