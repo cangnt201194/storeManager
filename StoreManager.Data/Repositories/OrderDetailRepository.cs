@@ -1,15 +1,16 @@
 ﻿using StoreManager.Data.Infrastructure;
 using StoreManager.Model.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public class OrderDetailRepository:RepositoryBase<OrderDetail>
+    public interface IOrderDetailRepository
+    {//can phai viet them cac phuowng thuc can thiet
+    }
+
+    public class OrderDetailRepository : RepositoryBase<OrderDetail>, IOrderDetailRepository
     {
-        public OrderDetailRepository(DbFactory dbFactory) : base(dbFactory) { }
+        public OrderDetailRepository(DbFactory dbFactory) : base(dbFactory)
+        {
+        }
     }
 }
