@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public class PostRepository:RepositoryBase<Post>
+    public interface IPostRepository
+    {//can phai viet them cac phuowng thuc can thiet
+
+    }
+    public class PostRepository:RepositoryBase<Post>, IPostRepository
     {
         public PostRepository(DbFactory dbFactory) : base(dbFactory)
         {

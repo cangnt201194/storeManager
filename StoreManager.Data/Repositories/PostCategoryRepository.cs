@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public class PostCategoryRepository:RepositoryBase<PostCategory>
+    public interface IPostCategoryRepository
+    {//can phai viet them cac phuowng thuc can thiet
+
+    }
+    public class PostCategoryRepository:RepositoryBase<PostCategory>, IPostCategoryRepository
     {
         public PostCategoryRepository(DbFactory dbFactory):base(dbFactory)
         { }

@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public class PageRepository : RepositoryBase<Page> 
+    public interface IPageRepository
+    {//can phai viet them cac phuowng thuc can thiet
+
+    }
+    public class PageRepository : RepositoryBase<Page> , IPageRepository
     { 
         public PageRepository(DbFactory dbFactory):base(dbFactory)
         {

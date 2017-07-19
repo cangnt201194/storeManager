@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public class SupportOnlineRepository:RepositoryBase<SupportOnline>
+    public interface ISupportOnlineRepository
+    {//can phai viet them cac phuowng thuc can thiet
+
+    }
+    public class SupportOnlineRepository:RepositoryBase<SupportOnline>, ISupportOnlineRepository
     {
         public SupportOnlineRepository(DbFactory dbFactory):base(dbFactory)
         {

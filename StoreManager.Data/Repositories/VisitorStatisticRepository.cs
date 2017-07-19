@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-   public  class VisitorStatisticRepository:RepositoryBase<VisitorStatistic>
+    public interface IVisitorStatisticRepository
+    {//can phai viet them cac phuowng thuc can thiet
+
+    }
+    public  class VisitorStatisticRepository:RepositoryBase<VisitorStatistic>, IVisitorStatisticRepository
     {
         public VisitorStatisticRepository(DbFactory dbFactory):base(dbFactory)
         { }

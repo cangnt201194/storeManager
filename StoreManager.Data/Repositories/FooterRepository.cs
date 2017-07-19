@@ -12,7 +12,7 @@ namespace StoreManager.Data.Repositories
     {//can phai viet them cac phuowng thuc can thiet
        
     }
-    public class FooterRepository:RepositoryBase<Footer>
+    public class FooterRepository:RepositoryBase<Footer>,IFooterRepository
     {
         public FooterRepository(DbFactory dbFactory)
             : base(dbFactory)

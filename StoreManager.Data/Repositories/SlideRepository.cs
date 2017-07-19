@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public class SlideRepository:RepositoryBase<Slide>
+    public interface ISlideRepository
+    {//can phai viet them cac phuowng thuc can thiet
+
+    }
+    public class SlideRepository:RepositoryBase<Slide>, ISlideRepository
     {
         public SlideRepository(DbFactory dbFactory) : base(dbFactory) { }
     }

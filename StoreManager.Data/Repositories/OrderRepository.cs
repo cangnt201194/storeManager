@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public class OrderRepository : RepositoryBase<Order>
+    public interface IOrderRepository
+    {//can phai viet them cac phuowng thuc can thiet
+
+    }
+    public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
         public OrderRepository(DbFactory dbFactory) : base(dbFactory)
         {
