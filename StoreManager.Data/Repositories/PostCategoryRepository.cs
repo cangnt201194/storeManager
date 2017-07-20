@@ -14,7 +14,7 @@ namespace StoreManager.Data.Repositories
     }
     public class PostCategoryRepository:RepositoryBase<PostCategory>, IPostCategoryRepository
     {
-        public PostCategoryRepository(DbFactory dbFactory):base(dbFactory)
+        public PostCategoryRepository(IDbFactory dbFactory):base(dbFactory)
         { }
 
     }

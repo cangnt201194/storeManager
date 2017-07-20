@@ -12,7 +12,7 @@ namespace StoreManager.Data.Repositories
 
     public class ProductCategoryRepository : RepositoryBase<ProductCategory>
     {
-        public ProductCategoryRepository(DbFactory dbFactory)
+        public ProductCategoryRepository(IDbFactory dbFactory)
             : base(dbFactory)
         {
         }

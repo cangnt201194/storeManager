@@ -7,7 +7,7 @@
 
         public void Commit()
         {
-            dbContext.SaveChanges();
+            DbContext.SaveChanges();
         }
 
         public UnitOfWork(IDbFactory dbFactory)
@@ -17,7 +17,7 @@
 
         public StoreManagerDbContext DbContext
         {
-            get { return DbContext ?? (dbContext = dbFactory.Init()); }
+            get { return dbContext ?? (dbContext = dbFactory.Init()); }
         }
     }
 }

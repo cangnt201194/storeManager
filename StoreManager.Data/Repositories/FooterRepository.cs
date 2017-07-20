@@ -14,7 +14,7 @@ namespace StoreManager.Data.Repositories
     }
     public class FooterRepository:RepositoryBase<Footer>,IFooterRepository
     {
-        public FooterRepository(DbFactory dbFactory)
+        public FooterRepository(IDbFactory dbFactory)
             : base(dbFactory)
         {
         }
