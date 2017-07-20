@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace StoreManager.Data.Repositories
 {
-    public interface IProductCategoryRepository
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {//can phai viet them cac phuowng thuc can thiet
         IEnumerable<ProductCategory> GetByAlias(string alias);
     }

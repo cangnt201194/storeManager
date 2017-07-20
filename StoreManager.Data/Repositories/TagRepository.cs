@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public interface ITagRepository
+    public interface ITagRepository : IRepository<Tag>
     {//can phai viet them cac phuowng thuc can thiet
 
     }

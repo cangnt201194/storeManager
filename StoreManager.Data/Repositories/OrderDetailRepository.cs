@@ -3,7 +3,7 @@ using StoreManager.Model.Models;
 
 namespace StoreManager.Data.Repositories
 {
-    public interface IOrderDetailRepository
+    public interface IOrderDetailRepository : IRepository<OrderDetail>
     {//can phai viet them cac phuowng thuc can thiet
     }
 

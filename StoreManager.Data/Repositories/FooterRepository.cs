@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public interface IFooterRepository
+    public interface IFooterRepository : IRepository<Footer>
     {//can phai viet them cac phuowng thuc can thiet
        
     }

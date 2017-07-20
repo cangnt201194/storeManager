@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public interface IVisitorStatisticRepository
+    public interface IVisitorStatisticRepository : IRepository<VisitorStatistic>
     {//can phai viet them cac phuowng thuc can thiet
 
     }

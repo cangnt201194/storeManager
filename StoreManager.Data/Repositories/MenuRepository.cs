@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StoreManager.Data.Repositories
 {
-    public interface IMenuRepository
+    public interface IMenuRepository:IRepository<Menu>
     {//can phai viet them cac phuowng thuc can thiet
 
     }
