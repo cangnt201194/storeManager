@@ -29,6 +29,7 @@ namespace StoreManager.Data
 
         public DbSet<Tag> Tags { set; get; }
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
+        public DbSet<Error> Errors { set; get; }
 
         /// <summary>
         /// Chạy khi khởi tạo entity framework
