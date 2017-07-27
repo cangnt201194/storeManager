@@ -18,6 +18,25 @@ namespace StoreManager.Web.API
         }
 
         /// <summary>
+        /// loadAll
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("getall")]
+        public HttpResponseMessage Get(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var listCategory = _postCategoryService.GetAll();
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+
+
+                return response;
+            });
+        }
+        /// <summary>
         /// create
         /// </summary>
         /// <param name="request"></param>
@@ -25,7 +44,6 @@ namespace StoreManager.Web.API
         /// <returns></returns>
         public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
         {
-            
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
@@ -37,7 +55,9 @@ namespace StoreManager.Web.API
                 {
                     var category = _postCategoryService.Add(postCategory);
                     _postCategoryService.Save();
+
                     response = request.CreateResponse(HttpStatusCode.Created, category);
+
                 }
                 return response;
             });
@@ -50,7 +70,6 @@ namespace StoreManager.Web.API
         /// <returns></returns>
         public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
         {
-
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
@@ -60,9 +79,11 @@ namespace StoreManager.Web.API
                 }
                 else
                 {
-                     _postCategoryService.Update(postCategory);
+                    _postCategoryService.Update(postCategory);
                     _postCategoryService.Save();
+
                     response = request.CreateResponse(HttpStatusCode.OK);
+
                 }
                 return response;
             });
@@ -75,7 +96,6 @@ namespace StoreManager.Web.API
         /// <returns></returns>
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
-
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
@@ -87,28 +107,13 @@ namespace StoreManager.Web.API
                 {
                     _postCategoryService.Delete(id);
                     _postCategoryService.Save();
+
                     response = request.CreateResponse(HttpStatusCode.OK);
+
                 }
                 return response;
             });
         }
-        /// <summary>
-        /// loadAll
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [Route("getall")]
-        public HttpResponseMessage Get(HttpRequestMessage request)
-        {
 
-            return CreateHttpResponse(request, () =>
-            {                       
-                    var listCategory= _postCategoryService.GetAll();
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
-                
-                return response;
-            });
-        }
     }
 }
