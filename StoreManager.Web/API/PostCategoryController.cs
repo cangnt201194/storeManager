@@ -1,9 +1,13 @@
-﻿using StoreManager.Model.Models;
+﻿using AutoMapper;
+using StoreManager.Model.Models;
 using StoreManager.Service;
 using StoreManager.Web.Infrastructure.Core;
+using StoreManager.Web.Models;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using StoreManager.Web.Infrastructure.Extensions;
 
 namespace StoreManager.Web.API
 {
@@ -30,6 +34,7 @@ namespace StoreManager.Web.API
             {
                 var listCategory = _postCategoryService.GetAll();
 
+                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
 
 
@@ -42,7 +47,9 @@ namespace StoreManager.Web.API
         /// <param name="request"></param>
         /// <param name="postCategory"></param>
         /// <returns></returns>
-        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
+        /// 
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -53,7 +60,9 @@ namespace StoreManager.Web.API
                 }
                 else
                 {
-                    var category = _postCategoryService.Add(postCategory);
+                    PostCategory newPostCategory = new PostCategory();
+                    newPostCategory.UpDatePostCategory(postCategoryVm);
+                    var category = _postCategoryService.Add(newPostCategory);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.Created, category);
@@ -68,7 +77,8 @@ namespace StoreManager.Web.API
         /// <param name="request"></param>
         /// <param name="postCategory"></param>
         /// <returns></returns>
-        public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -79,7 +89,9 @@ namespace StoreManager.Web.API
                 }
                 else
                 {
-                    _postCategoryService.Update(postCategory);
+                    var postCategoryDb = _postCategoryService.GetByID(postCategoryVm.ID);
+                    postCategoryDb.UpDatePostCategory(postCategoryVm);
+                    _postCategoryService.Update(postCategoryDb);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);

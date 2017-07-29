@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201707271747541_Reload.Designer.cs">
       <DependentUpon>201707271747541_Reload.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707291817304_ChangeFieldMetaKeyword.cs" />
+    <Compile Include="Migrations\201707291817304_ChangeFieldMetaKeyword.Designer.cs">
+      <DependentUpon>201707291817304_ChangeFieldMetaKeyword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707271747541_Reload.resx">
       <DependentUpon>201707271747541_Reload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707291817304_ChangeFieldMetaKeyword.resx">
+      <DependentUpon>201707291817304_ChangeFieldMetaKeyword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
