@@ -1,9 +1,10 @@
-﻿using StoreManager.Model.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using StoreManager.Model.Models;
 using System.Data.Entity;
 
 namespace StoreManager.Data
 {
-    public class StoreManagerDbContext : DbContext
+    public class StoreManagerDbContext : IdentityDbContext<ApplicationUser>
     {
         //nhận connectionstring trong app.config ở đây là StoreManagerConnection
         public StoreManagerDbContext() : base("StoreManagerConnection")
@@ -31,6 +32,10 @@ namespace StoreManager.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
 
+        public static StoreManagerDbContext Create()
+        {
+            return new StoreManagerDbContext();
+        }
         /// <summary>
         /// Chạy khi khởi tạo entity framework
         /// </summary>
@@ -38,6 +43,9 @@ namespace StoreManager.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId ,i.RoleId});
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+            
         }
     }
 }

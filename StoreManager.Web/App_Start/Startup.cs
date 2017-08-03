@@ -12,16 +12,22 @@ using StoreManager.Service;
 using System.Web.Mvc;
 using Autofac.Integration.WebApi;
 using System.Web.Http;
+using static StoreManager.Web.App_Start.IdentityConfig;
+using System.Web;
+using Microsoft.Owin.Security.DataProtection;
+using Microsoft.AspNet.Identity;
+using StoreManager.Model.Models;
 
 [assembly: OwinStartup(typeof(StoreManager.Web.App_Start.Startup))]
 
 namespace StoreManager.Web.App_Start
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             ConfigAutofac(app);
+            ConfigureAuth(app);
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
         }
 
@@ -39,6 +45,12 @@ namespace StoreManager.Web.App_Start
 
             builder.RegisterType<StoreManagerDbContext>().AsSelf().InstancePerRequest();
 
+            //Asp.net Identity
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
