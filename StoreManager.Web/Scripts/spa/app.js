@@ -2,18 +2,31 @@
 var myApp = angular.module("myModule", []);
 //cach 1 khai bao
 myApp.controller("myController", myController);
-myApp.controller("myController1", myController1);
-myApp.controller("schoolController", schoolController);
-
-myController.$inject = ['$scope', '$rootScope'];
+myApp.service('Validator', Validator);
+myController.$inject = ['$scope', 'Validator'];
 //declare scope long nhau
-function schoolController($scope, $rootScope) {
-    $scope.message = "test from schoolController.";
-}
-function myController($scope)
+function myController($scope, Validator)
 {
-     $scope.message = "This is my message from Controller";
+    $scope.number = 1;
+   // $scope.ten = prompt("mời bạn nhập số:");
+    // Validator.checkNumber($scope.ten);
+    $scope.checkNumber= function ()
+    {
+        $scope.message = Validator.checkNumber($scope.number);
+    }
+   
 }
-function myController1($scope, $rootScope) {
-   // $scope.message = "This is my message from Controller1";
+//tạo service
+function Validator($window) {
+    return {
+        checkNumber: checkNumber
+    }
+    function checkNumber(input) {
+        if(input%2==0)
+        {
+            return 'this is even';
+        } else {
+            return 'this is odd';
+        }
+    }
 }
