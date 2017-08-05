@@ -1,8 +1,12 @@
-﻿/// <reference path="../plugins/angular/angular.js" />
+﻿
+/// <reference path="../plugins/angular/angular.js" />
 var myApp = angular.module("myModule", []);
 //cach 1 khai bao
 myApp.controller("myController", myController);
+myApp.directive("storeManagerDirective", storeManagerDirective);
 myApp.service('Validator', Validator);
+
+myApp.controller("myController", myController);
 myController.$inject = ['$scope', 'Validator'];
 //declare scope long nhau
 function myController($scope, Validator)
@@ -28,5 +32,12 @@ function Validator($window) {
         } else {
             return 'this is odd';
         }
+    }
+}
+//khai bao custome Directive
+function storeManagerDirective(){
+    return {
+        restrict:"A",
+        templateUrl: "/Scripts/spa/storeManagerDirective.html"
     }
 }

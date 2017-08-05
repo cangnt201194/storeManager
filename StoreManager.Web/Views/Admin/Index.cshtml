@@ -13,9 +13,8 @@
     <script src="~/Scripts/spa/app.js"></script>
 </head>
 <body>
-    
-
         <div ng-controller="myController">
+            <div store-manager-directive></div>
             <button ng-click="checkNumber()">checkNumber</button>
             <input type="number" ng-model="number" />{{number}}
            from myController : {{message}}
