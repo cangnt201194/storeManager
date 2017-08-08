@@ -10,7 +10,7 @@ namespace StoreManager.Data.Repositories
         IEnumerable<ProductCategory> GetByAlias(string alias);
     }
 
-    public class ProductCategoryRepository : RepositoryBase<ProductCategory>
+    public class ProductCategoryRepository : RepositoryBase<ProductCategory>,IProductCategoryRepository
     {
         public ProductCategoryRepository(IDbFactory dbFactory)
             : base(dbFactory)
