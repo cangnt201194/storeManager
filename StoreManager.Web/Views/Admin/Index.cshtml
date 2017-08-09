@@ -24,6 +24,7 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link href="~/Assets/admin/libs/toastr/toastr.css" rel="stylesheet" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini" ng-app="storeManager">
     <!-- Site wrapper -->
@@ -523,10 +524,13 @@
     <!--Begin embed angularjs-->
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/Assets/admin/libs/toastr/toastr.js"></script>
 
     <script src="~/app/shared/modules/storeManager.common.js"></script>
     <script src="~/app/shared/filters/statusFilter.js"></script>
     <script src="~/app/shared/services/apiService.js"></script>
+    <script src="~/app/shared/services/notificationService.js"></script>
+
 
     <script src="~/app/shared/directives/pagerDirective.js"></script>
     <script src="~/app/components/products/products.module.js"></script>

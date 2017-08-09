@@ -1,8 +1,8 @@
 ﻿/// <reference path="I:\SoureCode\Git\StoreManager.Web\Assets/admin/libs/angular/angular.js" />
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController);
-    productCategoryListController.$inject = ['$scope', 'apiService'];
-    function productCategoryListController($scope, apiService) {
+    productCategoryListController.$inject = ['$scope', 'apiService','notificationService'];
+    function productCategoryListController($scope, apiService, notificationService) {
         $scope.productCategories = [];
         $scope.getProductcategories = getProductCategories;
         $scope.pageCount = 0;
@@ -23,10 +23,16 @@
                 }
             }
             apiService.get('/api/productcategory/getall', config, function (result) {
-                $scope.productCategories = result.data.Items;
-                $scope.page = result.data.Page;
-                $scope.pagesCount = result.data.TotalPages;
-                $scope.totalCount = result.data.TotalCount;
+                if (result.data.TotalCount==0) {
+                    notificationService.displayWarning("Không có bản ghi nào được tìm thấy!");
+                } else {
+                    notificationService.displaySuccess("Đã tìm thấy "+ result.data.TotalCount +" bản ghi.");
+                }
+                    $scope.productCategories = result.data.Items;
+                    $scope.page = result.data.Page;
+                    $scope.pagesCount = result.data.TotalPages;
+                    $scope.totalCount = result.data.TotalCount;
+                
             }, function () {
                 console.log('Load product category failed')
             });         
