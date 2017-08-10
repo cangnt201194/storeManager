@@ -18,7 +18,7 @@
             var config = {
                 params: {
                     page: page,
-                    pageSize: 2,
+                    pageSize: 4,
                    keyword:$scope.keyword
                 }
             }
@@ -26,7 +26,7 @@
                 if (result.data.TotalCount==0) {
                     notificationService.displayWarning("Không có bản ghi nào được tìm thấy!");
                 } else {
-                    notificationService.displaySuccess("Đã tìm thấy "+ result.data.TotalCount +" bản ghi.");
+                   // notificationService.displaySuccess("Đã tìm thấy "+ result.data.TotalCount +" bản ghi.");
                 }
                     $scope.productCategories = result.data.Items;
                     $scope.page = result.data.Page;
@@ -37,6 +37,7 @@
                 console.log('Load product category failed')
             });         
         }
+
         $scope.getProductcategories();      
     }
 })(angular.module('storeManager.product_categories'));

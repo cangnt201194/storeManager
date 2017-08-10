@@ -20,7 +20,7 @@
                     toastr.error(err);
                 })
             } else {
-                toastr.error(err);
+                toastr.error(error);
             }
         }
         function displayWarning(message) {
