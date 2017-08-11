@@ -1,14 +1,31 @@
 ﻿/// <reference path="I:\SoureCode\Git\StoreManager.Web\Assets/admin/libs/angular/angular.js" />
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController);
-    productCategoryListController.$inject = ['$scope', 'apiService','notificationService'];
-    function productCategoryListController($scope, apiService, notificationService) {
+    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
+    function productCategoryListController($scope, apiService, notificationService, $ngBootbox) {
         $scope.productCategories = [];
         $scope.getProductcategories = getProductCategories;
         $scope.pageCount = 0;
         $scope.page = 0;
         $scope.keyword = "";
         $scope.search = search;
+        $scope.deleteProductCategory = deleteProductCategory;
+        function deleteProductCategory(id) {
+            $ngBootbox.confirm("Bạn có chắc muốn xóa?").then(function () {
+                var config = {
+                    params: {
+                        id: id
+                    }
+                }
+                apiService.del("api/productcategory/delete", config, function () {
+                    notificationService.displaySuccess("Xóa không thành công.");
+                    search();
+                }, function () {
+                    notificationService.displayError("Xóa không thành công.")
+                })
+            });
+        }
+
         function search()
         {
             getProductCategories();
