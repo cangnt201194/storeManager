@@ -1,8 +1,8 @@
 ﻿/// <reference path="I:\SoureCode\Git\StoreManager.Web\Assets/admin/libs/angular/angular.js" />
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController);
-    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
-    function productCategoryListController($scope, apiService, notificationService, $ngBootbox) {
+    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter'];
+    function productCategoryListController($scope, apiService, notificationService, $ngBootbox, $filter) {
         $scope.productCategories = [];
         $scope.getProductcategories = getProductCategories;
         $scope.pageCount = 0;
@@ -10,6 +10,51 @@
         $scope.keyword = "";
         $scope.search = search;
         $scope.deleteProductCategory = deleteProductCategory;
+        $scope.selectAll = selectAll;
+        $scope.isAll = false;
+        $scope.deleteMulti = deleteMulti;
+        function deleteMulti() {
+            var listId = [];
+            $.each($scope.selected, function (i, item) {
+                listId.push(item.ID);
+            });
+            var config={
+                params:{
+                    checkedProductCategories: JSON.stringify(listId)
+                }
+            }
+            apiService.del('api/productcategory/deletemulti', config, function (result) {
+                notificationService.displaySuccess("Xóa thành công " + result.data + ' bản ghi.');
+                search();
+            }, function (error) {
+                notificationService.displayError("Xóa không thành công");
+                search();
+            });
+        }
+
+        function selectAll() {
+            if ($scope.isAll===false) {
+                angular.forEach($scope.productCategories, function (item) {
+                    item.checked = true;
+                });
+                $scope.isAll = true;
+            } else {
+                angular.forEach($scope.productCategories, function (item) {
+                    item.checked = false;
+                });
+                $scope.isAll = false;
+            }
+        }
+        $scope.$watch("productCategories", function (n, o) {
+            var checked = $filter("filter")(n, { checked: true });
+            if (checked.length) {
+                $scope.selected = checked;
+                $('#btnDelete').removeAttr('disabled');
+            } else {
+                $('#btnDelete').attr('disabled','disabled');
+            }
+        }, true);
+
         function deleteProductCategory(id) {
             $ngBootbox.confirm("Bạn có chắc muốn xóa?").then(function () {
                 var config = {
@@ -21,7 +66,7 @@
                     notificationService.displaySuccess("Xóa không thành công.");
                     search();
                 }, function () {
-                    notificationService.displayError("Xóa không thành công.")
+                    notificationService.displayError("Xóa không thành công.");
                 })
             });
         }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace StoreManager.Web.API
 {
@@ -24,10 +25,10 @@ namespace StoreManager.Web.API
             this._productCategoryService = productCategoryService;
         }
         #endregion
-        [Route("delete")]
+        [Route("deletemulti")]
         [HttpDelete]
         [AllowAnonymous]
-        public HttpResponseMessage Delete(HttpRequestMessage request,int id)
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request,string checkedProductCategories)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -37,8 +38,34 @@ namespace StoreManager.Web.API
                     response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
-                {                  
-                    var oldProductCategory= _productCategoryService.Delete(id);
+                {
+                    var ids = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    foreach (var id in ids)
+                    {
+                       _productCategoryService.Delete(id);
+                    }
+                    
+                    _productCategoryService.Save();
+                    response = request.CreateResponse(HttpStatusCode.OK, ids.Count);
+                }
+                return response;
+            });
+        }
+        [Route("delete")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var oldProductCategory = _productCategoryService.Delete(id);
                     _productCategoryService.Save();
 
                     var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
