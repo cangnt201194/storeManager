@@ -1,12 +1,12 @@
-﻿using StoreManager.Model.Models;
-using StoreManager.Service;
-using System;
+﻿using System;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using StoreManager.Model.Models;
+using StoreManager.Service;
 
 namespace StoreManager.Web.Infrastructure.Core
 {
@@ -16,27 +16,26 @@ namespace StoreManager.Web.Infrastructure.Core
 
         public ApiControllerBase(IErrorService errorService)
         {
-            _errorService = errorService;
+            this._errorService = errorService;
         }
 
-        protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> funtion)
+        protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> function)
         {
             HttpResponseMessage response = null;
             try
             {
-                response = funtion.Invoke();
+                response = function.Invoke();
             }
             catch (DbEntityValidationException ex)
             {
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Trace.WriteLine($"Entity of type\"{eve.Entry.Entity.GetType().Name}\"in state \"{eve.Entry.State}\" has the following validation errors.");
+                    Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation error.");
                     foreach (var ve in eve.ValidationErrors)
                     {
-                        Trace.WriteLine($"- Property: \"{ve.PropertyName}\",Error: \"{ve.ErrorMessage}\".");
+                        Trace.WriteLine($"- Property: \"{ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"");
                     }
                 }
-
                 LogError(ex);
                 response = requestMessage.CreateResponse(HttpStatusCode.BadRequest, ex.InnerException.Message);
             }
@@ -53,19 +52,20 @@ namespace StoreManager.Web.Infrastructure.Core
             return response;
         }
 
-        public void LogError(Exception ex)
+        private void LogError(Exception ex)
         {
             try
             {
                 Error error = new Error();
-                error.Message = ex.Message;
-                error.Message = ex.StackTrace;
                 error.CreatedDate = DateTime.Now;
+                error.Message = ex.Message;
+                error.StackTrace = ex.StackTrace;
                 _errorService.Create(error);
                 _errorService.Save();
             }
-            catch 
+            catch
             {
+                
             }
         }
     }

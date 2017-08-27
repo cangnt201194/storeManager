@@ -18,17 +18,20 @@ namespace StoreManager.Web.API
     public class ProductController : ApiControllerBase
     {
         #region Init
+
         private IProductService _productService;
 
         public ProductController(IErrorService errorService, IProductService productService) : base(errorService)
         {
             this._productService = productService;
         }
-        #endregion
+
+        #endregion Init
+
         [Route("deletemulti")]
         [HttpDelete]
         [AllowAnonymous]
-        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProductCategories)
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProducts)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -39,7 +42,7 @@ namespace StoreManager.Web.API
                 }
                 else
                 {
-                    var ids = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    var ids = new JavaScriptSerializer().Deserialize<List<int>>(checkedProducts);
                     foreach (var id in ids)
                     {
                         _productService.Delete(id);
@@ -51,6 +54,7 @@ namespace StoreManager.Web.API
                 return response;
             });
         }
+
         [Route("delete")]
         [HttpDelete]
         [AllowAnonymous]
@@ -74,6 +78,7 @@ namespace StoreManager.Web.API
                 return response;
             });
         }
+
         [Route("getallparents")]
         [HttpGet]
         [AllowAnonymous]
@@ -87,6 +92,7 @@ namespace StoreManager.Web.API
                 return response;
             });
         }
+
         [Route("getall")]
         [HttpGet]
         [AllowAnonymous]
@@ -110,6 +116,7 @@ namespace StoreManager.Web.API
                 return response;
             });
         }
+
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
@@ -136,6 +143,7 @@ namespace StoreManager.Web.API
                 return response;
             });
         }
+
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
@@ -152,7 +160,6 @@ namespace StoreManager.Web.API
                 {
                     var dbProduct = _productService.GetByID(productVm.ID);
                     dbProduct.UpdateProduct(productVm);
-                    dbProduct.CreatedDate = DateTime.Now;
                     _productService.Update(dbProduct);
                     _productService.Save();
 

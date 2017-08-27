@@ -85,10 +85,11 @@ namespace StoreManager.Web.Infrastructure.Extensions
             product.Image = productVm.Image;
             product.MoreImages = productVm.MoreImages;
             product.Price = productVm.Price;
-            product.PromotionPrice = product.PromotionPrice;
+            product.PromotionPrice = productVm.PromotionPrice;
             product.Warranty = productVm.Warranty;
             product.HomeFlag = productVm.HomeFlag;
             product.ViewCount = productVm.ViewCount;
+            product.HotFlag = productVm.HotFlag;
 
             product.CreatedDate = productVm.CreatedDate;
             product.CreatedBy = productVm.CreatedBy;
@@ -97,6 +98,7 @@ namespace StoreManager.Web.Infrastructure.Extensions
             product.MetaKeyWord = productVm.MetaKeyword;
             product.MetaDescription = productVm.MetaDescription;
             product.Status = productVm.Status;
+            product.Tags = productVm.Tags;
         }
         #endregion
     }
