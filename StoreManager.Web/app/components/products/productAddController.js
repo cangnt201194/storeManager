@@ -10,6 +10,7 @@
             Status: true,
         }
         $scope.loadProductCategories = [];
+        $scope.moreImages = [];
         $scope.ckeditorOptions = {
             languague: 'vi',
             height: '200px',
@@ -22,6 +23,7 @@
         };
         $scope.AddProduct = AddProduct;
         function AddProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             apiService.post("api/product/create", $scope.product, function (result) {
                 notificationService.displaySuccess(result.data.Name + " đã được thêm mới.");
                 $state.go('products');
@@ -32,13 +34,21 @@
         };
         function loadProductCategories() {
             apiService.get("api/productcategory/getallparents", null, function (result) {
-                $scope.productCategories = result.data;
-
             }, function () {
                 console.log('cannot get list parent.');
             });
         };
         loadProductCategories();
+
+        $scope.ChoosemoreImages = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                })
+            }
+            finder.popup();
+        }
 
         $scope.ChooseImage = function () {
             var finder = new CKFinder();
