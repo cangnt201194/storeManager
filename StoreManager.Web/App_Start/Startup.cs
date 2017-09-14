@@ -12,7 +12,6 @@ using StoreManager.Service;
 using System.Web.Mvc;
 using Autofac.Integration.WebApi;
 using System.Web.Http;
-using static StoreManager.Web.App_Start.IdentityConfig;
 using System.Web;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.AspNet.Identity;

@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace StoreManager.Web.API
 {
     [RoutePrefix("api/productcategory")]
+    [Authorize]
     public class ProductCategoryController : ApiControllerBase
     {
         #region Init
@@ -27,7 +28,6 @@ namespace StoreManager.Web.API
         #endregion
         [Route("deletemulti")]
         [HttpDelete]
-        [AllowAnonymous]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request,string checkedProductCategories)
         {
             return CreateHttpResponse(request, () =>
@@ -53,7 +53,6 @@ namespace StoreManager.Web.API
         }
         [Route("delete")]
         [HttpDelete]
-        [AllowAnonymous]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -76,7 +75,6 @@ namespace StoreManager.Web.API
         }
         [Route("getallparents")]
         [HttpGet]
-        [AllowAnonymous]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -89,7 +87,6 @@ namespace StoreManager.Web.API
         }
         [Route("getall")]
         [HttpGet]
-        [AllowAnonymous]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize)
         {
             return CreateHttpResponse(request, () =>
@@ -112,7 +109,6 @@ namespace StoreManager.Web.API
         }
         [Route("create")]
         [HttpPost]
-        [AllowAnonymous]
         public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
         {
             return CreateHttpResponse(request, () =>
@@ -138,7 +134,6 @@ namespace StoreManager.Web.API
         }
         [Route("update")]
         [HttpPut]
-        [AllowAnonymous]
         public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
         {
             return CreateHttpResponse(request, () =>
@@ -165,7 +160,6 @@ namespace StoreManager.Web.API
 
         [Route("getbyid/{id:int}")]
         [HttpGet]
-        [AllowAnonymous]
         public HttpResponseMessage GetByID(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

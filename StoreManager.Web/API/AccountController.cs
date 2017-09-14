@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using StoreManager.Web.App_Start;
-using static StoreManager.Web.App_Start.IdentityConfig;
 
 namespace StoreManager.Web.API
 {
@@ -20,6 +19,7 @@ namespace StoreManager.Web.API
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
+
             UserManager = userManager;
             SignInManager = signInManager;
         }
@@ -48,19 +48,19 @@ namespace StoreManager.Web.API
             }
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [Route("login")]
-        public async Task<HttpResponseMessage> Login(HttpRequestMessage request, string userName, string password, bool rememberMe)
-        {
-            if (!ModelState.IsValid)
-            {
-                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(userName, password, rememberMe, shouldLockout: false);
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[Route("login")]
+        //public async Task<HttpResponseMessage> Login(HttpRequestMessage request, string userName, string password, bool rememberMe)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+        //    }
+        //    // This doesn't count login failures towards account lockout
+        //    // To enable password failures to trigger account lockout, change to shouldLockout: true
+        //    var result = await SignInManager.PasswordSignInAsync(userName, password, rememberMe, shouldLockout: false);
+        //    return request.CreateResponse(HttpStatusCode.OK, result);
+        //}
     }
 }

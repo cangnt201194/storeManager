@@ -12,6 +12,7 @@ using StoreManager.Web.Infrastructure.Extensions;
 namespace StoreManager.Web.API
 {
     [RoutePrefix("api/postcategory")]
+    [Authorize]
     public class PostCategoryController : ApiControllerBase
     {
         private IPostCategoryService _postCategoryService;
