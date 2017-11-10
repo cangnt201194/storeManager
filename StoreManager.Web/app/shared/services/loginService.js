@@ -18,6 +18,7 @@
                 authenticationService.setTokenInfo(userInfo);
                 authData.authenticationData.IsAuthenticated = true;
                 authData.authenticationData.userName = userName;
+                authData.authenticationData.accessToken = userInfo.accessToken;
                 deferred.resolve(null);
                 
             },(function (err, status) {

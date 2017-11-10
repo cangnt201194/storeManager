@@ -6,9 +6,12 @@ namespace StoreManager.Data
 {
     public class StoreManagerDbContext : IdentityDbContext<ApplicationUser>
     {
-        //nhận connectionstring trong app.config ở đây là StoreManagerConnection
+        /// <summary>
+        /// Nhận connectionstring trong app.config ở đây là StoreManagerConnection.
+        /// Tham khảo về load dữ liệu http://www.ini.vn/2016/05/eager-lazy-explicit-loading.html
+        /// </summary>
         public StoreManagerDbContext() : base("StoreManagerConnection")
-        {
+        {      
             this.Configuration.LazyLoadingEnabled = false;
         }
 
@@ -32,6 +35,12 @@ namespace StoreManager.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
 
+        public DbSet<ApplicationGroup> ApplicationGroups { set; get; }
+        public DbSet<ApplicationRole> ApplicationRoles { set; get; }
+        public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
+        public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
+
+
         public static StoreManagerDbContext Create()
         {
             return new StoreManagerDbContext();
@@ -43,9 +52,11 @@ namespace StoreManager.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId ,i.RoleId});
-            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
-            
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId }).ToTable("ApplicationUserRoles");
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
+            modelBuilder.Entity<IdentityRole>().ToTable("ApplicationRoles");
+            modelBuilder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
+         
         }
     }
 }

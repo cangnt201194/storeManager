@@ -18,6 +18,11 @@ namespace StoreManager.Web.Mappings
                 cfg.CreateMap<ProductCategory, ProductCategoryViewModel>();
                 cfg.CreateMap<ProductTag, ProductTagViewModel>();
 
+                //user and roles
+                cfg.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
+                cfg.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
+                cfg.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+            
             });
           
         }

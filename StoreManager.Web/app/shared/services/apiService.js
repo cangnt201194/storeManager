@@ -25,7 +25,7 @@
             });
         };
         function put(url, data, success, failure) {
-           authenticationService.setHeader();
+            authenticationService.setHeader();
             $http.put(url, data).then(function (result) {
                 success(result);
             }, function (error) {

@@ -12,7 +12,8 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            //Update-database là tự động vào data ko cần add-migration
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(StoreManager.Data.StoreManagerDbContext context)

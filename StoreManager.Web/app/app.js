@@ -4,7 +4,10 @@
     angular.module('storeManager',
         ['storeManager.products',
          'storeManager.common',
-         'storeManager.product_categories'
+         'storeManager.product_categories',
+         'storeManager.application_groups',
+         'storeManager.application_roles',
+         'storeManager.application_users'
         ]).config(config)
           .config(configAuthentication)
           .config(configError);
