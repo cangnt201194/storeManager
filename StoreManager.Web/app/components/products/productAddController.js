@@ -6,7 +6,7 @@
 
     function productAddController($scope, apiService, notificationService, $state, commonService) {
         $scope.product = {
-            CreatedDate: new Date(),
+            CreatedDate: new Date(dateString),
             Status: true,
         }
         $scope.loadProductCategories = [];

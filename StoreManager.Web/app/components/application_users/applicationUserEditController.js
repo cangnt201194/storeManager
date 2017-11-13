@@ -12,6 +12,7 @@
         $scope.updateAccount = updateAccount;
 
         function updateAccount() {
+            console.log($scope.account.BirthDay);
             apiService.put('/api/applicationUser/update', $scope.account, addSuccessed, addFailed);
         }
         function loadDetail() {
